@@ -1,5 +1,10 @@
 import xml.etree.ElementTree as ET
 import random
+import json
+
+# Load configuration from a JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
 def extract_sitemap_data(xml_file_path, num_urls=200):
     tree = ET.parse(xml_file_path)
@@ -25,7 +30,7 @@ def extract_sitemap_data(xml_file_path, num_urls=200):
     return all_products
 
 def main():
-    xml_file_path = 'sitemap_products_20.xml'  # Replace with your XML file path
+    xml_file_path = config['sitemap']
     random_entries = extract_sitemap_data(xml_file_path)
 
     for entry in random_entries:
